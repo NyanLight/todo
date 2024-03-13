@@ -1,3 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+}
+
+
+body {
+    display: flex;
+    flex-direction: row;
+    min-height: 100svh;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 1rem;
+    align-items: center;
+    background-color: rgb(240, 191, 241);
+}
+
+aside a {
+    margin-top: auto;
+}
+
+
+#logo {
+    height: 4rem;
+}
+
+
+
 h1 {
     color: brown;
+}
+
+
+main {
+    width: 90%;
 }
