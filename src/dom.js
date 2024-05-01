@@ -5,20 +5,22 @@ const todosUl = document.getElementById("todos");
 const addProjectBtn = document.getElementById("addProjectBtn");
 const projectNameInput = document.getElementById("projectNameInput");
 const warning = document.getElementById("warning");
+const projectTitle = document.getElementById("projectTitle");
 
 export const domController = {
   displayProjects() {
     projectsUl.innerHTML = "";
     const projects = todoController.getProjectsNames();
     for (let i = 0; i < projects.length; ++i) {
-      const projectDiv = document.createElement('div');
-      projectDiv.classList.add('projectDiv');
+      const projectDiv = document.createElement("div");
+      projectDiv.classList.add("projectDiv");
       const project = document.createElement("li");
       project.textContent = projects[i];
       project.classList.add("project");
-      project.addEventListener("click", () => {
-        domController.displayTodo(project.textContent);
-      });
+        project.addEventListener("click", () => {
+          domController.displayTodo(project.textContent);
+          projectTitle.textContent = project.textContent;
+        });
       const deleteBtn = document.createElement("button");
       deleteBtn.textContent = "del";
       deleteBtn.dataset.name = projects[i];
@@ -45,7 +47,7 @@ export const domController = {
     projects[projectName].forEach((todo) => {
       const liTodo = document.createElement("li");
       liTodo.textContent = `${todo.title} ${todo.description} ${todo.dueDate} ${todo.priority}`;
-      todosUl.innerHTML = '';
+      todosUl.innerHTML = "";
       todosUl.appendChild(liTodo);
     });
   },
@@ -66,7 +68,6 @@ export const domController = {
     domController.displayProjects();
     warning.textContent = "";
   },
-
 };
 
 addProjectBtn.addEventListener("click", () => {
