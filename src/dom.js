@@ -54,7 +54,7 @@ export const domController = {
 
   addWarningSign() {
     warning.textContent =
-      "There are 5 projects yet. Delete smth to add new project.";
+      "There are already 5 projects here. Delete a project to add the new one.";
   },
 
   addProject(projectName) {
