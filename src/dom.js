@@ -2,7 +2,6 @@ import { todoController, projects } from "./todos";
 
 const projectsUl = document.getElementById("projects");
 const todosUl = document.getElementById("todos");
-const aside = document.getElementById("aside");
 const addProjectBtn = document.getElementById("addProjectBtn");
 const projectNameInput = document.getElementById("projectNameInput");
 const warning = document.getElementById("warning");
@@ -51,7 +50,6 @@ export const domController = {
     });
   },
 
-  //
   addWarningSign() {
     warning.textContent =
       "There are 5 projects yet. Delete smth to add new project.";
@@ -69,7 +67,6 @@ export const domController = {
     warning.textContent = "";
   },
 
-  // use condition statement inside listener
 };
 
 addProjectBtn.addEventListener("click", () => {
