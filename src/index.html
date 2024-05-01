@@ -7,16 +7,17 @@
     <title>ToDo</title>
   </head>
   <body>
-    <aside>
-      <ul class="projects">
-        <li>Inbox</li>
+    <aside id="aside">
+      <ul id="projects">
       </ul>
-      <button id="addProjectBtn">add project</button>
+        <input type="text" id="projectNameInput">
+        <button id="addProjectBtn">+</button>
+        <span id="warning"></span>
     </aside>
     <main>
       <div id="mainPart">
         <h1 id="projectTitle">Inbox</h1>
-        <ul class="todos"></ul>
+        <ul id="todos"></ul>
         <button id="addTodoBtn">add task</button>
       </div>
       <footer>
