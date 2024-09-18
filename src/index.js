@@ -1,6 +1,2 @@
 import './styles.css';
-import { createProject } from './modules/controller';
-
-createProject('test');
-createProject('test');
-createProject('test2');
+import { createProject, deleteProject } from './modules/controller';
