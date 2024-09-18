@@ -2,7 +2,7 @@ import { Project } from "./projects";
 import { projects } from "./projects";
 
 export function createProject(name) {
-  for (project of projects) {
+  for (const project of projects) {
     if (name === project.name) {
       alert("There is a project with the same name");
       return;
