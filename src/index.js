@@ -1,3 +1,2 @@
 import './styles.css';
-
-console.log(greetings);
+import { createProject } from './modules/controller';
