@@ -7,27 +7,7 @@ export class Task {
     }
 
     complete = false;
-    set complete(arg) {
-        if (complete === fasle) {
-            complete = true; 
-        } else {complete = false}; 
-    }
 
-    set title(arg) {
-        this.title = arg;
-    }
-
-    set description(arg) {
-        this.description = arg;
-    }
-    
-    set dueDate(arg) {
-        this.dueDate = arg;
-    }
-
-    set priority(arg) {
-        this.priority = arg;
-    }
 
     
     

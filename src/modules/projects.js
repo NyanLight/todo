@@ -8,8 +8,4 @@ export class Project {
     }
 
     tasks = [];
-    addTask(title, description, dueDate, priority) {
-            this.tasks.push(new Task(title, description, dueDate, priority))
-    }
-    
 }
