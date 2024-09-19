@@ -14,6 +14,18 @@ function getProjectIndex(name) {
   }
 }
 
+function getTaskIndex(projectIndex, title) {
+  let index = null;
+  for (const i in projects[projectIndex].tasks) {
+    if (projects[projectIndex].tasks[i].title === title) {
+      index = i;
+      return index;
+    } else {
+      continue
+    }
+  }
+}
+
 export function createProject(name) {
   for (const project of projects) {
     if (name === project.name) {
@@ -29,7 +41,7 @@ export function createProject(name) {
 export function deleteProject(name) {
   const index = getProjectIndex(name);
   if (index === null) return;
-  projects.splice(index, 1); 
+  projects.splice(index, 1);
   console.log(projects);
 }
 
@@ -38,4 +50,13 @@ export function createTask(projectName, title, description, dueDate, priority) {
   if (index === null) return;
   projects[index].tasks.push(new Task(title, description, dueDate, priority));
   console.log(projects[index].tasks);
+}
+
+export function deleteTask(projectName, taskTitle) {
+  const projectIndex = getProjectIndex(projectName);
+  if (projectIndex === null) return;
+  const taskIndex = getTaskIndex(projectIndex, taskTitle);
+  if (taskIndex === null) return;
+  projects[projectIndex].tasks.splice(taskIndex, 1);
+  console.log(projects[projectIndex].tasks);
 }

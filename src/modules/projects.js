@@ -1,11 +1,10 @@
 import { Task } from "./tasks";
 export const projects = [];
 
-
 export class Project {
-    constructor (name) {
-        this.name = name;
-    }
+  constructor(name) {
+    this.name = name;
+  }
 
-    tasks = [];
+  tasks = [];
 }
