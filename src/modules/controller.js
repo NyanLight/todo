@@ -1,6 +1,17 @@
 import { Project } from "./projects";
 import { projects } from "./projects";
 
+function getProjectIndex(name) {
+  let index = null;
+  for (const i in projects) {
+    if (projects[i].name === name) {
+      index += i;
+    } else {
+      continue;
+    }
+  }
+}
+
 export function createProject(name) {
   for (const project of projects) {
     if (name === project.name) {
@@ -14,15 +25,8 @@ export function createProject(name) {
 }
 
 export function deleteProject(name) {
-  let index = null;
-  for (const i in projects) {
-    if (projects[i].name === name) {
-      index = i;
-      break;
-    } else {
-      continue;
-    }
-  }
+  const index = getProjectIndex(name);
+  if (index === undefined) return;
   projects.splice(index, 1); 
   console.log(projects);
 }
