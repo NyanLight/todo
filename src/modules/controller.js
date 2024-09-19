@@ -60,3 +60,12 @@ export function deleteTask(projectName, taskTitle) {
   projects[projectIndex].tasks.splice(taskIndex, 1);
   console.log(projects[projectIndex].tasks);
 }
+
+export function switchCompletion(projectName, taskTitle) {
+  const projectIndex = getProjectIndex(projectName);
+  if (projectIndex === null) return;
+  const taskIndex = getTaskIndex(projectIndex, taskTitle);
+  if (taskIndex === null) return;
+  projects[projectIndex].tasks[taskIndex].switchComplete(); 
+  console.log(projects[projectIndex].tasks[taskIndex]); 
+}
