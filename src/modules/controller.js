@@ -22,21 +22,25 @@ function getTaskIndex(projectIndex, title) {
       index = i;
       return index;
     } else {
-      continue
+      continue;
     }
   }
 }
 
 export function createProject(name) {
-  for (const project of projects) {
-    if (name === project.name) {
-      alert("There is a project with the same name");
-      return;
-    } else {
-      continue;
+  if (projects.length === 5) {
+    alert("Delete a project or more to create another one");
+  } else {
+    for (const project of projects) {
+      if (name === project.name) {
+        alert("There is a project with the same name");
+        return;
+      } else {
+        continue;
+      }
     }
+    projects.push(new Project(name));
   }
-  projects.push(new Project(name));
 }
 
 export function deleteProject(name) {
@@ -67,11 +71,11 @@ export function switchCompletion(projectName, taskTitle) {
   if (projectIndex === null) return;
   const taskIndex = getTaskIndex(projectIndex, taskTitle);
   if (taskIndex === null) return;
-  projects[projectIndex].tasks[taskIndex].switchComplete(); 
-  console.log(projects[projectIndex].tasks[taskIndex]); 
+  projects[projectIndex].tasks[taskIndex].switchComplete();
+  console.log(projects[projectIndex].tasks[taskIndex]);
 }
 
 export function initialization() {
-  createProject('Default');
+  createProject("Default");
   displayProjects();
 }
