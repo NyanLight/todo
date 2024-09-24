@@ -1,7 +1,17 @@
+import { createProject } from "./controller";
 import { projects } from "./projects";
+
+const addProjectBtn = document.querySelector('#addProjectBtn');
+addProjectBtn.addEventListener('click', () => {
+    const projectNameInput = document.querySelector('#projectNameInput');
+    createProject(`${projectNameInput.value}`);
+    projectNameInput.value = '';
+    displayProjects();
+}) 
 
 export function displayProjects() {
     const list = document.querySelector('#projectsList')
+    list.innerHTML = '';
     for (const project of projects) {
         const li = document.createElement('li');
         const div = document.createElement('div');
