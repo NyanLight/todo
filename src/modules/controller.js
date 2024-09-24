@@ -1,3 +1,4 @@
+import { displayProjects } from "./dom";
 import { Project } from "./projects";
 import { projects } from "./projects";
 import { Task } from "./tasks";
@@ -68,4 +69,9 @@ export function switchCompletion(projectName, taskTitle) {
   if (taskIndex === null) return;
   projects[projectIndex].tasks[taskIndex].switchComplete(); 
   console.log(projects[projectIndex].tasks[taskIndex]); 
+}
+
+export function initialization() {
+  createProject('Default');
+  displayProjects();
 }
