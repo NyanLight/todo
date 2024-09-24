@@ -42,3 +42,12 @@ main {
 a {
     text-align: center;
 }
+
+.noneBin {
+    display: none;
+} 
+
+.Bin {
+    display: inline-block;
+    height: 1rem;
+}
