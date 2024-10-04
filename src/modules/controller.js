@@ -3,7 +3,7 @@ import { Project } from "./projects";
 import { projects } from "./projects";
 import { Task } from "./tasks";
 
-function getProjectIndex(name) {
+export function getProjectIndex(name) {
   let index = null;
   for (const i in projects) {
     if (projects[i].name === name) {
@@ -77,5 +77,6 @@ export function switchCompletion(projectName, taskTitle) {
 
 export function initialization() {
   createProject("Default");
+  createTask('Default', 'Title', 'Description', 'dueDate', 'priority');
   displayProjects();
 }
