@@ -4,10 +4,11 @@ import {
   deleteProject,
   deleteTask,
   getProjectIndex,
+  switchCompletion,
 } from "./controller";
 import { projects } from "./projects";
 import binIcon from "../assets/rubbish-bin-svgrepo-com.svg";
-import { add } from "date-fns";
+import checkIcon from '../assets/check-square-svgrepo-com.svg';
 
 const addProjectBtn = document.querySelector("#addProjectBtn");
 addProjectBtn.addEventListener("click", () => {
@@ -47,27 +48,35 @@ export function displayProject(projectName) {
     const description = document.createElement("div");
     const dueDate = document.createElement("div");
     const priority = document.createElement("div");
+    const bin = document.createElement('img');
+    const check = document.createElement('img');
     li.classList.toggle("taskLi");
     title.classList.toggle("titleDiv");
     description.classList.toggle("descriptionDiv");
     dueDate.classList.toggle("dueDateDiv");
     priority.classList.toggle("priorityDiv");
+    bin.classList.toggle('bin');
+    check.classList.toggle('check');
+    bin.src = binIcon;
+    check.src = checkIcon;
     title.textContent = task.title;
     description.textContent = task.description;
     dueDate.textContent = task.dueDate;
     priority.textContent = task.priority;
-    const bin = document.createElement('img');
-    bin.classList.toggle('bin');
-    bin.src = binIcon;
     bin.addEventListener('click', () => {
       deleteTask(projects[index].name, title.textContent);
       displayProject(projects[index].name);
+    })
+    check.addEventListener('click', () => {
+      switchCompletion(projects[index].name, title.textContent);
+      console.log(projects);
     })
     li.appendChild(title);
     li.appendChild(description);
     li.appendChild(dueDate);
     li.appendChild(priority);
     li.appendChild(bin);
+    li.appendChild(check);
     tasksList.appendChild(li);
   }
 }
