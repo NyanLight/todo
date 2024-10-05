@@ -17,6 +17,10 @@ nav {
     background-color: rgb(105, 240, 240);
 }
 
+dialog {
+    margin: auto;
+}
+
 .plusBtn{
     color: white;
     background-color: black;
@@ -39,11 +43,15 @@ main {
     background-color: rgb(175, 250, 255);
 }
 
+.taskLi {
+    outline: 3px solid red;
+}
+
 a {
     text-align: center;
 }
 
-.noneBin {
+.hidden {
     display: none;
 } 
 

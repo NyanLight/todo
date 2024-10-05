@@ -8,7 +8,7 @@ import {
 } from "./controller";
 import { projects } from "./projects";
 import binIcon from "../assets/rubbish-bin-svgrepo-com.svg";
-import checkIcon from '../assets/check-square-svgrepo-com.svg';
+import checkIcon from "../assets/check-square-svgrepo-com.svg";
 
 const addProjectBtn = document.querySelector("#addProjectBtn");
 addProjectBtn.addEventListener("click", () => {
@@ -21,16 +21,27 @@ addProjectBtn.addEventListener("click", () => {
 const openDialogBtn = document.getElementById("openDialogBtn");
 const dialog = document.getElementById("dialog");
 openDialogBtn.addEventListener("click", () => {
+  projectInput.value = currentProject.textContent;
+  titleInput.value = '';
+  descriptionInput.value = '';
+  dueDateInput.value = '';
+  priorityInput.value = '';
+  addTaskBtn.classList.remove('hidden');
   dialog.showModal();
 });
 
+const projectInput = document.getElementById("projectInput");
+const titleInput = document.getElementById("titleInput");
+const descriptionInput = document.getElementById("descriptionInput");
+const dueDateInput = document.getElementById("dateInput");
+const priorityInput = document.getElementById("priorityInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 addTaskBtn.addEventListener("click", () => {
-  const project = document.getElementById("projectInput").value;
-  const title = document.getElementById("titleInput").value;
-  const description = document.getElementById("descriptionInput").value;
-  const dueDate = document.getElementById("dateInput").value;
-  const priority = document.getElementById("priorityInput").value;
+  const project = projectInput.value;
+  const title = titleInput.value;
+  const description = descriptionInput.value;
+  const dueDate = dueDateInput.value;
+  const priority = priorityInput.value;
   createTask(project, title, description, dueDate, priority);
   dialog.close();
   displayProject(project);
@@ -45,42 +56,45 @@ export function displayProject(projectName) {
   for (const task of projects[index].tasks) {
     const li = document.createElement("li");
     const title = document.createElement("div");
-    const description = document.createElement("div");
-    const dueDate = document.createElement("div");
     const priority = document.createElement("div");
-    const bin = document.createElement('img');
-    const check = document.createElement('img');
+    const bin = document.createElement("img");
+    const check = document.createElement("img");
     li.classList.toggle("taskLi");
     title.classList.toggle("titleDiv");
-    description.classList.toggle("descriptionDiv");
-    dueDate.classList.toggle("dueDateDiv");
     priority.classList.toggle("priorityDiv");
-    bin.classList.toggle('bin');
-    check.classList.toggle('check');
+    bin.classList.toggle("bin");
+    check.classList.toggle("check");
     bin.src = binIcon;
     check.src = checkIcon;
     title.textContent = task.title;
-    description.textContent = task.description;
-    dueDate.textContent = task.dueDate;
     priority.textContent = task.priority;
-    bin.addEventListener('click', () => {
+    bin.addEventListener("click", (e) => {
+      e.stopPropagation()
       deleteTask(projects[index].name, title.textContent);
       displayProject(projects[index].name);
-    })
-    check.addEventListener('click', () => {
+    });
+    check.addEventListener("click", (e) => {
+      e.stopPropagation()
       switchCompletion(projects[index].name, title.textContent);
       console.log(projects);
-    })
+    });
     li.appendChild(title);
-    li.appendChild(description);
-    li.appendChild(dueDate);
     li.appendChild(priority);
     li.appendChild(bin);
     li.appendChild(check);
     tasksList.appendChild(li);
+    li.addEventListener('click', () => {
+      projectInput.value = projectName;
+      titleInput.value = task.title;
+      descriptionInput.value = task.description;
+      dueDateInput.value = task.dueDate;
+      priorityInput.value = task.priority;
+      addTaskBtn.classList.add('hidden');
+      dialog.showModal();
+    })
   }
 }
- 
+
 export function displayProjects() {
   const list = document.querySelector("#projectsList");
   list.innerHTML = "";
@@ -101,7 +115,7 @@ export function displayProjects() {
     if (span.textContent !== "Default") {
       const bin = document.createElement("img");
       bin.src = binIcon;
-      bin.classList.toggle("noneBin");
+      bin.classList.toggle("hidden");
       bin.addEventListener("click", () => {
         deleteProject(span.textContent);
         displayProjects();

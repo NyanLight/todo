@@ -77,7 +77,7 @@ export function switchCompletion(projectName, taskTitle) {
 
 export function initialization() {
   createProject("Default");
-  createTask('Default', 'Title', 'Description', 'dueDate', 'priority');
+  createTask('Default', 'Title', 'Description', '2024-10-08', 'priority');
   displayProjects();
   displayProject('Default');
 }
