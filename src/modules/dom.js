@@ -2,6 +2,7 @@ import {
   createProject,
   createTask,
   deleteProject,
+  deleteTask,
   getProjectIndex,
 } from "./controller";
 import { projects } from "./projects";
@@ -55,13 +56,22 @@ export function displayProject(projectName) {
     description.textContent = task.description;
     dueDate.textContent = task.dueDate;
     priority.textContent = task.priority;
+    const bin = document.createElement('img');
+    bin.classList.toggle('bin');
+    bin.src = binIcon;
+    bin.addEventListener('click', () => {
+      deleteTask(projects[index].name, title.textContent);
+      displayProject(projects[index].name);
+    })
     li.appendChild(title);
     li.appendChild(description);
     li.appendChild(dueDate);
     li.appendChild(priority);
+    li.appendChild(bin);
     tasksList.appendChild(li);
   }
 }
+ 
 export function displayProjects() {
   const list = document.querySelector("#projectsList");
   list.innerHTML = "";
@@ -88,10 +98,10 @@ export function displayProjects() {
         displayProjects();
       });
       li.addEventListener("mouseover", () => {
-        bin.classList.toggle("Bin");
+        bin.classList.toggle("bin");
       });
       li.addEventListener("mouseout", () => {
-        bin.classList.toggle("Bin");
+        bin.classList.toggle("bin");
       });
       div.appendChild(bin);
     }

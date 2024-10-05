@@ -1,4 +1,4 @@
-import { displayProjects } from "./dom";
+import { displayProject, displayProjects } from "./dom";
 import { Project } from "./projects";
 import { projects } from "./projects";
 import { Task } from "./tasks";
@@ -32,8 +32,8 @@ export function createProject(name) {
     alert("Delete a project or more to create another one");
   } else {
     for (const project of projects) {
-      if (name === project.name) {
-        alert("There is a project with the same name");
+      if (name === project.name || name === '') {
+        alert("Please, choose different name for your project.");
         return;
       } else {
         continue;
@@ -79,4 +79,5 @@ export function initialization() {
   createProject("Default");
   createTask('Default', 'Title', 'Description', 'dueDate', 'priority');
   displayProjects();
+  displayProject('Default');
 }
