@@ -23,7 +23,7 @@ const dialog = document.getElementById("dialog");
 openDialogBtn.addEventListener("click", () => {
   projectInput.value = currentProject.textContent;
   titleInput.value = '';
-  descriptionInput.value = '';
+  descriptionTextarea.value = '';
   dueDateInput.value = '';
   priorityInput.value = '';
   addTaskBtn.classList.remove('hidden');
@@ -32,14 +32,14 @@ openDialogBtn.addEventListener("click", () => {
 
 const projectInput = document.getElementById("projectInput");
 const titleInput = document.getElementById("titleInput");
-const descriptionInput = document.getElementById("descriptionInput");
+const descriptionTextarea = document.getElementById("descriptionTextarea");
 const dueDateInput = document.getElementById("dateInput");
 const priorityInput = document.getElementById("priorityInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 addTaskBtn.addEventListener("click", () => {
   const project = projectInput.value;
   const title = titleInput.value;
-  const description = descriptionInput.value;
+  const description = descriptionTextarea.value;
   const dueDate = dueDateInput.value;
   const priority = priorityInput.value;
   createTask(project, title, description, dueDate, priority);
@@ -86,7 +86,7 @@ export function displayProject(projectName) {
     li.addEventListener('click', () => {
       projectInput.value = projectName;
       titleInput.value = task.title;
-      descriptionInput.value = task.description;
+      descriptionTextarea.value = task.description;
       dueDateInput.value = task.dueDate;
       priorityInput.value = task.priority;
       addTaskBtn.classList.add('hidden');
