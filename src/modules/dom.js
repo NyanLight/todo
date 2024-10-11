@@ -10,18 +10,30 @@ import { projects } from "./projects";
 import binIcon from "../assets/rubbish-bin-svgrepo-com.svg";
 import checkIcon from "../assets/check-square-svgrepo-com.svg";
 
+const projectsSelect = document.getElementById('projectsSelect');
+function updateProjectSelect () {
+  projectsSelect.innerHTML = '';
+  for (const project of projects) { 
+    const option = document.createElement('option');
+    option.innerText = project.name;
+    option.value = project.name;
+    projectsSelect.appendChild(option);
+  }
+}
+
 const addProjectBtn = document.querySelector("#addProjectBtn");
 addProjectBtn.addEventListener("click", () => {
   const projectNameInput = document.querySelector("#projectNameInput");
   createProject(`${projectNameInput.value}`);
   projectNameInput.value = "";
   displayProjects();
+  updateProjectSelect();
 });
 
 const openDialogBtn = document.getElementById("openDialogBtn");
 const dialog = document.getElementById("dialog");
 openDialogBtn.addEventListener("click", () => {
-  projectInput.value = currentProject.textContent;
+  projectsSelect.value = currentProject.textContent;
   titleInput.value = '';
   descriptionTextarea.value = '';
   dueDateInput.value = '';
@@ -30,14 +42,13 @@ openDialogBtn.addEventListener("click", () => {
   dialog.showModal();
 });
 
-const projectInput = document.getElementById("projectInput");
 const titleInput = document.getElementById("titleInput");
 const descriptionTextarea = document.getElementById("descriptionTextarea");
 const dueDateInput = document.getElementById("dateInput");
 const priorityInput = document.getElementById("priorityInput");
 const addTaskBtn = document.getElementById("addTaskBtn");
 addTaskBtn.addEventListener("click", () => {
-  const project = projectInput.value;
+  const project = projectsSelect.options[projectsSelect.selectedIndex].value;
   const title = titleInput.value;
   const description = descriptionTextarea.value;
   const dueDate = dueDateInput.value;
@@ -84,7 +95,7 @@ export function displayProject(projectName) {
     li.appendChild(check);
     tasksList.appendChild(li);
     li.addEventListener('click', () => {
-      projectInput.value = projectName;
+      projectsSelect.value = currentProject.textContent;
       titleInput.value = task.title;
       descriptionTextarea.value = task.description;
       dueDateInput.value = task.dueDate;
@@ -118,6 +129,7 @@ export function displayProjects() {
       bin.classList.toggle("hidden");
       bin.addEventListener("click", () => {
         deleteProject(span.textContent);
+        updateProjectSelect();
         displayProjects();
       });
       li.addEventListener("mouseover", () => {
