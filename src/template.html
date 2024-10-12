@@ -39,7 +39,13 @@
               <label>Due Time:<input type="date" id="dateInput" /></label>
             </div>
             <div>
-              <label>Priority<input type="text" id="priorityInput" /></label>
+              <label>Priority:
+                <select name="Priority" id="prioritySelect">
+                  <option value="High">High</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Low">Low</option>
+                </select>
+              </label>
             </div>
             <button id="addTaskBtn" type="button" class="plusBtn">+</button>
           </form>

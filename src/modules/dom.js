@@ -37,7 +37,7 @@ openDialogBtn.addEventListener("click", () => {
   titleInput.value = '';
   descriptionTextarea.value = '';
   dueDateInput.value = '';
-  priorityInput.value = '';
+  prioritySelect.value = 'medium';
   addTaskBtn.classList.remove('hidden');
   dialog.showModal();
 });
@@ -45,14 +45,14 @@ openDialogBtn.addEventListener("click", () => {
 const titleInput = document.getElementById("titleInput");
 const descriptionTextarea = document.getElementById("descriptionTextarea");
 const dueDateInput = document.getElementById("dateInput");
-const priorityInput = document.getElementById("priorityInput");
+const prioritySelect = document.getElementById("prioritySelect");
 const addTaskBtn = document.getElementById("addTaskBtn");
 addTaskBtn.addEventListener("click", () => {
   const project = projectsSelect.options[projectsSelect.selectedIndex].value;
   const title = titleInput.value;
   const description = descriptionTextarea.value;
   const dueDate = dueDateInput.value;
-  const priority = priorityInput.value;
+  const priority = prioritySelect.value;
   createTask(project, title, description, dueDate, priority);
   dialog.close();
   displayProject(project);
@@ -78,7 +78,7 @@ export function displayProject(projectName) {
     bin.src = binIcon;
     check.src = checkIcon;
     title.textContent = task.title;
-    priority.textContent = task.priority;
+    priority.innerText = task.priority;
     bin.addEventListener("click", (e) => {
       e.stopPropagation()
       deleteTask(projects[index].name, title.textContent);
@@ -99,7 +99,7 @@ export function displayProject(projectName) {
       titleInput.value = task.title;
       descriptionTextarea.value = task.description;
       dueDateInput.value = task.dueDate;
-      priorityInput.value = task.priority;
+      prioritySelect.value = task.priority;
       addTaskBtn.classList.add('hidden');
       dialog.showModal();
     })
