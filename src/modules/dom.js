@@ -67,18 +67,18 @@ export function displayProject(projectName) {
   for (const task of projects[index].tasks) {
     const li = document.createElement("li");
     const title = document.createElement("div");
-    const priority = document.createElement("div");
+    const dueDate = document.createElement("div");
     const bin = document.createElement("img");
     const check = document.createElement("img");
     li.classList.toggle("taskLi");
     title.classList.toggle("titleDiv");
-    priority.classList.toggle("priorityDiv");
+    dueDate.classList.toggle("dueDateDiv");
     bin.classList.toggle("bin");
     check.classList.toggle("check");
     bin.src = binIcon;
     check.src = checkIcon;
     title.textContent = task.title;
-    priority.innerText = task.priority;
+    dueDate.innerText = task.dueDate;
     bin.addEventListener("click", (e) => {
       e.stopPropagation()
       deleteTask(projects[index].name, title.textContent);
@@ -90,7 +90,7 @@ export function displayProject(projectName) {
       console.log(projects);
     });
     li.appendChild(title);
-    li.appendChild(priority);
+    li.appendChild(dueDate);
     li.appendChild(bin);
     li.appendChild(check);
     tasksList.appendChild(li);
