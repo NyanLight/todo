@@ -39,6 +39,7 @@ openDialogBtn.addEventListener("click", () => {
   dueDateInput.value = '';
   prioritySelect.value = 'medium';
   addTaskBtn.classList.remove('hidden');
+  saveChangesBtn.classList.add('hidden');
   dialog.showModal();
 });
 
@@ -58,6 +59,7 @@ addTaskBtn.addEventListener("click", () => {
   displayProject(project);
 });
 
+const saveChangesBtn = document.getElementById('saveChangesBtn');
 export function displayProject(projectName) {
   const tasksList = document.getElementById("tasksList");
   tasksList.innerHTML = "";
@@ -101,10 +103,20 @@ export function displayProject(projectName) {
       dueDateInput.value = task.dueDate;
       prioritySelect.value = task.priority;
       addTaskBtn.classList.add('hidden');
+      saveChangesBtn.classList.remove('hidden');
+      saveChangesBtn.addEventListener('click', () => {
+        task.changeTitle(titleInput.value);
+        task.changeDescription(descriptionTextarea.value);
+        task.changeDueDate(dueDateInput.value);
+        task.changePriority(prioritySelect.value);
+        displayProject(currentProject.textContent);
+        dialog.close();
+      })
       dialog.showModal();
     })
   }
 }
+
 
 export function displayProjects() {
   const list = document.querySelector("#projectsList");
