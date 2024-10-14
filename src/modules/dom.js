@@ -1,4 +1,5 @@
 import {
+  changeProject,
   createProject,
   createTask,
   deleteProject,
@@ -66,7 +67,12 @@ export function displayProject(projectName) {
   const index = getProjectIndex(projectName);
   const currentProject = document.getElementById("currentProject");
   currentProject.textContent = projects[index].name;
+  displayTasks(index);
+}
+
+function displayTasks(index) {
   for (const task of projects[index].tasks) {
+    if (task.complete === true) continue;
     const li = document.createElement("li");
     const title = document.createElement("div");
     const dueDate = document.createElement("div");
@@ -89,6 +95,7 @@ export function displayProject(projectName) {
     check.addEventListener("click", (e) => {
       e.stopPropagation()
       switchCompletion(projects[index].name, title.textContent);
+      displayProject(currentProject.textContent);
       console.log(projects);
     });
     li.appendChild(title);
@@ -105,17 +112,19 @@ export function displayProject(projectName) {
       addTaskBtn.classList.add('hidden');
       saveChangesBtn.classList.remove('hidden');
       saveChangesBtn.addEventListener('click', () => {
+        changeProject(currentProject.textContent, task.title, projectsSelect.value);
         task.changeTitle(titleInput.value);
         task.changeDescription(descriptionTextarea.value);
         task.changeDueDate(dueDateInput.value);
         task.changePriority(prioritySelect.value);
         displayProject(currentProject.textContent);
         dialog.close();
-      })
+      }, {once: true})
       dialog.showModal();
     })
   }
 }
+
 
 
 export function displayProjects() {

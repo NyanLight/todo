@@ -54,7 +54,6 @@ export function createTask(projectName, title, description, dueDate, priority) {
   const index = getProjectIndex(projectName);
   if (index === null) return;
   projects[index].tasks.push(new Task(title, description, dueDate, priority));
-  console.log(projects[index].tasks);
 }
 
 export function deleteTask(projectName, taskTitle) {
@@ -62,8 +61,7 @@ export function deleteTask(projectName, taskTitle) {
   if (projectIndex === null) return;
   const taskIndex = getTaskIndex(projectIndex, taskTitle);
   if (taskIndex === null) return;
-  projects[projectIndex].tasks.splice(taskIndex, 1);
-  console.log(projects[projectIndex].tasks);
+  return (projects[projectIndex].tasks.splice(taskIndex, 1));
 }
 
 export function switchCompletion(projectName, taskTitle) {
@@ -72,7 +70,15 @@ export function switchCompletion(projectName, taskTitle) {
   const taskIndex = getTaskIndex(projectIndex, taskTitle);
   if (taskIndex === null) return;
   projects[projectIndex].tasks[taskIndex].switchComplete();
-  console.log(projects[projectIndex].tasks[taskIndex]);
+}
+
+export function changeProject(previousProjectName, taskTitle, newProjectName) {
+  if (projectsSelect.value != currentProject.textContent) {
+  const movingTask = deleteTask(previousProjectName, taskTitle)[0];
+  const newProjectindex = getProjectIndex(newProjectName);
+  if (newProjectindex === null) return;
+  projects[newProjectindex].tasks.push(movingTask);
+  }
 }
 
 export function initialization() {
