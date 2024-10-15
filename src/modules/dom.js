@@ -10,6 +10,7 @@ import {
 import { projects } from "./projects";
 import binIcon from "../assets/rubbish-bin-svgrepo-com.svg";
 import checkIcon from "../assets/check-square-svgrepo-com.svg";
+import { format } from "date-fns";
 
 const projectsSelect = document.getElementById('projectsSelect');
 function updateProjectSelect () {
@@ -92,7 +93,7 @@ function displayTasks(index) {
     bin.src = binIcon;
     check.src = checkIcon;
     title.textContent = task.title;
-    dueDate.innerText = task.dueDate;
+    dueDate.innerText = format(new Date(task.dueDate), 'dd/MM/yy');
     bin.addEventListener("click", (e) => {
       e.stopPropagation()
       deleteTask(projects[index].name, title.textContent);
