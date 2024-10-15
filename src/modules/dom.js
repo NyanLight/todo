@@ -151,6 +151,7 @@ export function displayProjects() {
       bin.classList.toggle("hidden");
       bin.addEventListener("click", () => {
         deleteProject(span.textContent);
+        if (span.textContent == currentProject.textContent) displayProject('Default');
         updateProjectSelect();
         displayProjects();
       });
