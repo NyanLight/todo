@@ -14,7 +14,9 @@ body {
 
 nav {
     width: 25%;
-    background-color: rgb(105, 240, 240);
+    background-color: rgb(224, 224, 224);
+    font-size: 1.2rem;
+    font-weight: 700;
 }
 
 dialog {
@@ -23,11 +25,12 @@ dialog {
 
 .plusBtn{
     color: white;
-    background-color: black;
+    background-color: rgb(37, 35, 35);
     border-radius: 50%;
     border: black solid;
-    font-size: 1.5rem;
-    padding: 6px;
+    font-size: 1rem;
+    padding: 2px;
+    text-align: center;
 }
 
 .floppyBtn {
@@ -39,7 +42,7 @@ dialog {
 }
 
 main {
-    background-color: rgb(175, 250, 255);
+    background-color: rgb(255, 255, 255);
     width: 75%;
     height: 100%;
     display: flex;
@@ -48,7 +51,7 @@ main {
 
 #tasksContainer {
     height: 90vh;
-    background-color: rgb(175, 250, 255);
+    background-color: rgb(255, 255, 255);
 }
 
 .taskLi {

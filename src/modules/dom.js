@@ -59,7 +59,7 @@ addTaskBtn.addEventListener("click", () => {
   const project = projectsSelect.options[projectsSelect.selectedIndex].value;
   const title = titleInput.value;
   const description = descriptionTextarea.value;
-  const dueDate = dueDateInput.value;
+  const dueDate = new Date (dueDateInput.value);
   const priority = prioritySelect.value;
   createTask(project, title, description, dueDate, priority);
   dialog.close();
@@ -93,7 +93,8 @@ function displayTasks(index) {
     bin.src = binIcon;
     check.src = checkIcon;
     title.textContent = task.title;
-    dueDate.innerText = format(new Date(task.dueDate), 'dd/MM/yy');
+    console.log(task.dueDate);
+    dueDate.innerText = format(((task.dueDate)), 'dd/MM/yy');
     bin.addEventListener("click", (e) => {
       e.stopPropagation()
       deleteTask(projects[index].name, title.textContent);
