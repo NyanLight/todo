@@ -71,3 +71,9 @@ a {
 .check {
     height: 1.2rem;
 }
+
+#crossImg {
+    height: 1rem;
+    position: absolute;
+    right: 5px;
+}

@@ -22,6 +22,11 @@ function updateProjectSelect () {
   }
 }
 
+const crossImg = document.getElementById('crossImg');
+crossImg.addEventListener('click', () => {
+  dialog.close();
+})
+
 const addProjectBtn = document.querySelector("#addProjectBtn");
 addProjectBtn.addEventListener("click", () => {
   const projectNameInput = document.querySelector("#projectNameInput");
