@@ -101,6 +101,7 @@ export function initialization() {
     createProject(project.name);
     for (const task of project.tasks) {
       createTask(project.name, task.title, task.description, task.dueDate, task.priority);
+      if (task.complete === true) switchCompletion(project.name, task.title);
     }
   }
   displayProjects();

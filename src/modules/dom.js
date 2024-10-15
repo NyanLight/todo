@@ -89,6 +89,7 @@ function displayTasks(index) {
     title.classList.toggle("titleDiv");
     dueDate.classList.toggle("dueDateDiv");
     bin.classList.toggle("bin");
+    bin.classList.toggle('taskLiBin');
     check.classList.toggle("check");
     bin.src = binIcon;
     check.src = checkIcon;
@@ -106,10 +107,10 @@ function displayTasks(index) {
       displayProject(currentProject.textContent);
       console.log(projects);
     });
+    li.appendChild(check);
     li.appendChild(title);
     li.appendChild(dueDate);
     li.appendChild(bin);
-    li.appendChild(check);
     tasksList.appendChild(li);
     li.addEventListener('click', () => {
       projectsSelect.value = currentProject.textContent;

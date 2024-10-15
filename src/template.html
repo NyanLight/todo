@@ -9,8 +9,8 @@
     <nav>
       <ul id="projectsList"></ul>
       <div id="addProjectDiv">
-        <button id="addProjectBtn" class="plusBtn">+</button>
         <input type="text" id="projectNameInput" maxlength="20"/>
+        <button id="addProjectBtn" class="plusBtn">+</button>
       </div>
     </nav>
     <main>
@@ -24,29 +24,33 @@
           <form action="">
             <img src="assets/cross.svg" id="crossImg">
             <div>
-              <label for> Project: <select name="projects" id="projectsSelect">
+              <label for="projectsSelect"> Project: 
+              </label>
+              <select name="projects" id="projectsSelect">
                 <option value="Default">Default</option>
               </select>
+            </div>
+            <div>
+              <label for="titleInput">Title:</label>
+              <input type="text" id="titleInput" maxlength="20"/>
+            </div>
+            <div>
+              <label for="descriptionTextarea"
+                >Description:</label>
+                <textarea id="descriptionTextarea" rows="6" placeholder="Write some additional information about the task"></textarea>
+            </div>
+            <div>
+              <label>Due Time:</label>
+              <input type="date" id="dateInput" />
+            </div>
+            <div>
+              <label for="prioritySelect">Priority:
               </label>
-            </div>
-            <div>
-              <label>Title:<input type="text" id="titleInput" maxlength="20"/></label>
-            </div>
-            <div>
-              <label
-                >Description:<textarea id="descriptionTextarea" rows="6" placeholder="Write some additional information about the task"></textarea></label>
-            </div>
-            <div>
-              <label>Due Time:<input type="date" id="dateInput" /></label>
-            </div>
-            <div>
-              <label>Priority:
-                <select name="Priority" id="prioritySelect">
-                  <option value="High">High</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Low">Low</option>
-                </select>
-              </label>
+              <select name="Priority" id="prioritySelect">
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
             </div>
             <button id="addTaskBtn" type="button" class="plusBtn">+</button>
             <button id='saveChangesBtn' type="button" class="floppyBtn hidden"><img src="./assets/floppy-disk.svg" alt="floppy disk icon"></button>

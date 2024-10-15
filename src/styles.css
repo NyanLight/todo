@@ -13,14 +13,41 @@ body {
 }
 
 nav {
-    width: 25%;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    width: 15%;
     background-color: rgb(224, 224, 224);
     font-size: 1.2rem;
     font-weight: 700;
 }
 
+nav li {
+    list-style-type: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    display: block;
+}
+
+form input, select {
+    width: 6rem;
+    padding: 5px;
+}
+
 dialog {
     margin: auto;
+    width: 15%;
+    padding: 1rem;
+}
+textArea {
+    resize: none;
+    padding: 5px;
 }
 
 .plusBtn{
@@ -47,6 +74,8 @@ main {
     height: 100%;
     display: flex;
     flex-direction: column;
+    padding-left: 2rem;
+
 }
 
 #tasksContainer {
@@ -54,8 +83,18 @@ main {
     background-color: rgb(255, 255, 255);
 }
 
+#openDialogBtn {
+    display: block;
+    margin: auto;
+}
+
 .taskLi {
-    outline: 3px solid red;
+    list-style-type: none;
+    background-color: rgb(224, 224, 224);
+    border-radius: 2%;
+    height: 2rem;
+    width: 50%;
+    margin: auto;
 }
 
 a {
@@ -72,11 +111,40 @@ a {
 }
 
 .check {
-    height: 1.2rem;
+    height: 1.5rem;
+    margin-right: 0.8rem;
+}
+
+.check:hover, .bin:hover {
+    scale: 1.2;
+}
+
+.taskLi {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding: 1rem;
 }
 
 #crossImg {
     height: 1rem;
     position: absolute;
     right: 5px;
+}
+
+#currentProject {
+    text-align: center;
+}
+
+.titleDiv {
+    font-size: 1.1rem;
+    width: 20%;
+}
+
+.dueDateDiv {
+    margin-left: auto;
+}
+
+.taskLiBin {
+    margin-left: 1rem;
 }
