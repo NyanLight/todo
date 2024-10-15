@@ -41,19 +41,21 @@ export function createProject(name) {
     }
     projects.push(new Project(name));
   }
+  updateLocalStorage();
 }
 
 export function deleteProject(name) {
   const index = getProjectIndex(name);
   if (index === null) return;
   projects.splice(index, 1);
-  console.log(projects);
+  updateLocalStorage();
 }
 
 export function createTask(projectName, title, description, dueDate, priority) {
   const index = getProjectIndex(projectName);
   if (index === null) return;
   projects[index].tasks.push(new Task(title, description, dueDate, priority));
+  updateLocalStorage();
 }
 
 export function deleteTask(projectName, taskTitle) {
@@ -61,7 +63,9 @@ export function deleteTask(projectName, taskTitle) {
   if (projectIndex === null) return;
   const taskIndex = getTaskIndex(projectIndex, taskTitle);
   if (taskIndex === null) return;
-  return (projects[projectIndex].tasks.splice(taskIndex, 1));
+  const forReturn = (projects[projectIndex].tasks.splice(taskIndex, 1));
+  updateLocalStorage();
+  return forReturn;
 }
 
 export function switchCompletion(projectName, taskTitle) {
@@ -70,6 +74,7 @@ export function switchCompletion(projectName, taskTitle) {
   const taskIndex = getTaskIndex(projectIndex, taskTitle);
   if (taskIndex === null) return;
   projects[projectIndex].tasks[taskIndex].switchComplete();
+  updateLocalStorage();
 }
 
 export function changeProject(previousProjectName, taskTitle, newProjectName) {
@@ -78,12 +83,31 @@ export function changeProject(previousProjectName, taskTitle, newProjectName) {
   const newProjectindex = getProjectIndex(newProjectName);
   if (newProjectindex === null) return;
   projects[newProjectindex].tasks.push(movingTask);
+  updateLocalStorage();
   }
 }
 
 export function initialization() {
+  if (!localStorage.getItem('projects')) {
   createProject("Default");
   createTask('Default', 'Title', 'Description', '2024-10-08', 'Low');
   displayProjects();
   displayProject('Default');
+  console.log(JSON.parse(localStorage.getItem('projects')));
+  console.log(projects);
+  } else {
+  const parsedProjects = JSON.parse(localStorage.getItem('projects'));
+  for (const project of parsedProjects) {
+    createProject(project.name);
+    for (const task of project.tasks) {
+      createTask(project.name, task.title, task.description, task.dueDate, task.priority);
+    }
+  }
+  displayProjects();
+  displayProject('Default');
+  }
+}
+
+function updateLocalStorage() {
+  localStorage.setItem('projects', JSON.stringify(projects));
 }

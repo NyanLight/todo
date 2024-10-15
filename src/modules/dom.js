@@ -73,6 +73,7 @@ export function displayProject(projectName) {
 function displayTasks(index) {
   for (const task of projects[index].tasks) {
     if (task.complete === true) continue;
+    updateProjectSelect();
     const li = document.createElement("li");
     const title = document.createElement("div");
     const dueDate = document.createElement("div");
